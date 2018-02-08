@@ -24,7 +24,6 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    // path: `${__dirname}/public/assets/`,
     filename: jsName,
     publicPath
   },
@@ -37,26 +36,18 @@ module.exports = {
           use: 'css-loader'
         })
       },
-      // {
-      //   test: /\.css$/,
-      //   use:[
-      //     { loader: 'css-loader' }
-      //   ]
-      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use:[
           { loader: 'babel-loader' },
-          { loader: 'eslint-loader' }
+          { loader: 'eslint-loader',
+            options:{
+              fix:true
+            } 
+          }
         ]
       },
-      // {
-      //   test: /\.jsx?$/,
-      //   exclude: /node_modules/,
-      //   loader: 'react-hot-loader!babel-loader'
-      // },
-      // { 
       {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
         use :[
