@@ -23,6 +23,15 @@ const options = [
   { value: '2', text: 'Старовойтов И.А.' }
 ];
 
+const initialState = {
+  checked: false,
+  contacts: '',
+  name: '',
+  phoneNumber: '',
+  email: '',
+  message: ''
+};
+
 class Feedback extends Component {
   constructor(props) {
     super(props);
@@ -41,6 +50,7 @@ class Feedback extends Component {
     this.handleEmail = this.handleEmail.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
     this.hideElem = this.hideElem.bind(this);
+    this.handleState = this.handleState.bind(this);
     this.handleData = this.handleData.bind(this);
   }
 
@@ -72,6 +82,10 @@ class Feedback extends Component {
 
   handleData() {
     console.log(JSON.stringify(this.state));
+  }
+
+  handleState() {
+    this.setState(initialState);
   }
 
   hideElem() {
@@ -138,17 +152,23 @@ class Feedback extends Component {
               onChange={this.handleMessage}
             />
           </div>
-          <div className='feedback__row'>
+          <div className='feedback__row feedback__row_space-between'>
             <Attach
               size='s'
               buttonContent=''
             />
+            <Button
+              size='s'
+              text='Очистить'
+              onClick={this.handleState}
+            />
           </div>
-          <div className='feedback__row' onClick={this.handleData}>
+          <div className='feedback__row'>
             <Button
               size='m'
               width='available'
               text='Отправить'
+              onClick={this.handleData}
             />
           </div>
         </div>

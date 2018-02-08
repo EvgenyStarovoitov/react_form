@@ -7,6 +7,11 @@
 }
 .feedback__row{
   padding: 7px 0px;
+  display: flex;
+  flex-direction: row;
+}
+.feedback__row_space-between{
+  justify-content: space-between;
 }
 .feedback__row_centre{
   /* margin: 0 auto; */
