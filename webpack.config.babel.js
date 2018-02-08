@@ -3,6 +3,7 @@ import path from 'path';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
+
 const publicPath         = 'http://localhost:8050/dist';
 const cssName            = process.env.NODE_ENV === 'production' ? 'styles-[hash].css' : 'styles.css';
 const jsName             = process.env.NODE_ENV === 'production' ? 'bundle-[hash].js' : 'bundle.js';
@@ -15,9 +16,10 @@ module.exports = {
       filename: cssName,
       disable: false,
       allChunks: true
-    })
+    }),
     // new HtmlWebpackPlugin({
-    //   title: 'Output Management'
+    //   title: 'Output Management',
+    //   filename: '.src/client.html'
     // })
   ],
   output: {
@@ -33,7 +35,6 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader'
-
         })
       },
       // {
@@ -45,17 +46,23 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        // loaders: ['babel-loader', 'eslint-loader']
         use:[
           { loader: 'babel-loader' },
           { loader: 'eslint-loader' }
         ]
-      }
+      },
       // {
       //   test: /\.jsx?$/,
       //   exclude: /node_modules/,
       //   loader: 'react-hot-loader!babel-loader'
-      // }
+      // },
+      // { 
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        use :[
+          { loader: 'url-loader'}
+        ]
+      }
     ]
   }
 };

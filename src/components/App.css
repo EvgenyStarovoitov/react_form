@@ -1,15 +1,16 @@
 .App {
-    padding: 20px;
-  }
-  
-  .App h1 {
-    font-size: 26px;
-  }
-  
-  .App input {
     padding: 10px;
+    max-width: 15em;
+    border: 1px solid rgb(189, 185, 185);
+    border-radius: 3px/3px;
   }
-  
-  .App hr {
-    margin-top: 20px;
+  .App__row{
+    padding: 7px 0px;
+  }
+  .App__row_centre{
+    /* margin: 0 auto; */
+    text-align: center;
+  }
+  .App_hidden{
+    display: none;
   }
