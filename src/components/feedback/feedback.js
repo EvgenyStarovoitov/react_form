@@ -31,12 +31,14 @@ class Feedback extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false,
-      contacts: '',
-      name: '',
-      phoneNumber: '',
-      email: '',
-      message: ''
+      formData: {
+        checked: false,
+        contacts: '',
+        name: '',
+        phoneNumber: '',
+        email: '',
+        message: ''
+      }
     };
     this.handleCheckAnonim = this.handleCheckAnonim.bind(this);
     this.handleContacts = this.handleContacts.bind(this);
@@ -50,33 +52,31 @@ class Feedback extends Component {
   }
 
   handleCheckAnonim() {
-    this.setState({
-      checked: !this.state.checked
-    });
+    this.setState({ formData:{ checked: !this.state.checked } });
   }
 
   handleContacts(val) {
-    this.setState({ contacts : this.props.options[val].text });
+    this.setState({ formData:{ contacts : this.props.options[val].text } });
   }
 
   handleName(val) {
-    this.setState({ name : val });
+    this.setState({ formData:{ name : val } });
   }
 
   handlePhoneNumber(val) {
-    this.setState({ phoneNumber : val });
+    this.setState({ formData:{ phoneNumber : val } });
   }
 
   handleEmail(val) {
-    this.setState({ email : val });
+    this.setState({ formData:{ email : val } });
   }
 
   handleMessage(val) {
-    this.setState({ message : val });
+    this.setState({ formData:{ message : val } });
   }
 
   handleClickButtonSend() {
-    console.log(JSON.stringify(this.state));
+    console.log(JSON.stringify(this.state.formData));
   }
 
   handleState() {
@@ -84,7 +84,7 @@ class Feedback extends Component {
   }
 
   hideElem() {
-    return this.className + (this.state.checked ? ' feedback_hidden' : '');
+    return this.className + (this.state.formData.checked ? ' feedback_hidden' : '');
   }
 
   render() {
@@ -97,7 +97,7 @@ class Feedback extends Component {
           <div className='feedback__row'>
             <Checkbox
               text='Анонимное сообщение'
-              checked={this.state.checked}
+              checked={this.state.formData.checked}
               onChange={this.handleCheckAnonim}
             />
           </div>
