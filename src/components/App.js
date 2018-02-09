@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import './App.css';
 import Feedback from './feedback/feedback';
-
-const propTypes = {
-  initialName: PropTypes.string
-};
 
 class App extends Component {
   constructor(props) {
@@ -17,12 +12,16 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <Feedback/>
+        <Feedback
+          options = {[
+            { value: '0', text: 'Служба безопасности' },
+            { value: '1', text: 'Топ Менеджмент' },
+            { value: '2', text: 'Старовойтов И.А.' }
+          ]}
+        />
       </div>
     );
   }
 }
-
-App.propTypes = propTypes;
 
 export default App;

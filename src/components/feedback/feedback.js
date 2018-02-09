@@ -14,14 +14,9 @@ import Button from 'arui-feather/button';
 import './feedback.css';
 
 const propTypes = {
-  initialName: PropTypes.string
+  initialName: PropTypes.string,
+  options: PropTypes.array
 };
-
-const options = [
-  { value: '0', text: 'Служба безопасности' },
-  { value: '1', text: 'Топ Менеджмент' },
-  { value: '2', text: 'Старовойтов И.А.' }
-];
 
 const initialState = {
   checked: false,
@@ -51,7 +46,7 @@ class Feedback extends Component {
     this.handleMessage = this.handleMessage.bind(this);
     this.hideElem = this.hideElem.bind(this);
     this.handleState = this.handleState.bind(this);
-    this.handleData = this.handleData.bind(this);
+    this.handleClickButtonSend = this.handleClickButtonSend.bind(this);
   }
 
   handleCheckAnonim() {
@@ -61,7 +56,7 @@ class Feedback extends Component {
   }
 
   handleContacts(val) {
-    this.setState({ contacts : options[val].text });
+    this.setState({ contacts : this.props.options[val].text });
   }
 
   handleName(val) {
@@ -80,7 +75,7 @@ class Feedback extends Component {
     this.setState({ message : val });
   }
 
-  handleData() {
+  handleClickButtonSend() {
     console.log(JSON.stringify(this.state));
   }
 
@@ -110,7 +105,7 @@ class Feedback extends Component {
             <Select
               size='m'
               mode='radio'
-              options={options}
+              options={this.props.options}
               placeholder='К кому ваше обращение'
               width='available'
               onChange={this.handleContacts}
@@ -168,7 +163,7 @@ class Feedback extends Component {
               size='m'
               width='available'
               text='Отправить'
-              onClick={this.handleData}
+              onClick={this.handleClickButtonSend}
             />
           </div>
         </div>
